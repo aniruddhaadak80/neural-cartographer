@@ -40,3 +40,5 @@ tmp-*
 
 # stray leftover from an earlier draft; not part of the Next.js app
 /index.html
+
+.vercel
