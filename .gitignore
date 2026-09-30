@@ -1,0 +1,42 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# next.js
+/.next/
+/out/
+next-env.d.ts.bak
+
+# production
+/build
+
+# data written by the filesystem storage adapter
+/.nc-data
+
+# misc
+.DS_Store
+*.pem
+Thumbs.db
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local env files
+.env*.local
+.env
+
+# typescript
+*.tsbuildinfo
+
+# local scratch files from manual verification
+tmp-*
+*.log
+.nc-test-*
+/render.html
+
+# stray leftover from an earlier draft; not part of the Next.js app
+/index.html
