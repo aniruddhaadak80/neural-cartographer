@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { toJson, toMarkdown } from "@/lib/export";
 import {
   createCodebaseSchema,
+  isMcpToolName,
   jsonRpcErrorCode,
   jsonRpcRequestSchema,
   mcpToolSchemas,
@@ -18,12 +19,6 @@ const SERVER_INFO = {
   version: "1.0.0",
   title: "Neural Cartographer",
 } as const;
-
-interface RpcError {
-  code: number;
-  message: string;
-  data?: unknown;
-}
 
 function rpcError(id: string | number | null, code: number, message: string, data?: unknown) {
   return { jsonrpc: "2.0" as const, id, error: { code, message, ...(data ? { data } : {}) } };
@@ -274,7 +269,9 @@ export async function POST(request: Request) {
 
         case "tools/call": {
           const name = args.name;
-          if (typeof name !== "string" || !(name in mcpToolSchemas)) {
+          // `in` would also match inherited Object.prototype members such as
+          // "toString" or "constructor", so use the own-property check.
+          if (typeof name !== "string" || !isMcpToolName(name)) {
             responses.push(
               rpcResult(
                 id,
