@@ -6,6 +6,7 @@ import { Trash2, Plus, RefreshCw, Download, FileCode2, AlertTriangle } from "luc
 
 import { Compass as CompassRose } from "./Compass";
 import { ScoreGauge, FactorBar } from "./ScoreGauge";
+import { nextDraftFilePath } from "@/lib/draft";
 
 /* ---------------- types mirroring the API ---------------- */
 
@@ -288,7 +289,10 @@ export function Atlas({
                 <button
                   type="button"
                   onClick={() => {
-                    setFiles((prev) => [...prev, { path: `src/file${prev.length + 1}.ts`, content: "" }]);
+                    setFiles((prev) => [
+                      ...prev,
+                      { path: nextDraftFilePath(prev.map((file) => file.path)), content: "" },
+                    ]);
                     setActiveFile(files.length);
                   }}
                   className="flex items-center gap-1 border-2 border-ink bg-cream px-2 py-0.5 text-[11px] font-bold hover:bg-paper"

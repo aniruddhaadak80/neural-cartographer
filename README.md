@@ -105,9 +105,10 @@ returning junk.
 ```bash
 npm run dev         # dev server
 npm run typecheck   # tsc --noEmit
+npm test            # vitest run
 npm run build       # production build
 npm start           # serve the production build
-npm run lint        # eslint
+npm run lint        # next lint (eslint, flat config in eslint.config.mjs)
 ```
 
 ## Layout
@@ -127,6 +128,7 @@ src/
     store.ts            storage adapters
     validation.ts       zod schemas, response schemas, MCP tool schemas
     breakdown.ts        per-file metrics
+    draft.ts            editor helpers (unique default file paths)
     export.ts           Markdown / JSON rendering
     sample.ts           sample survey payload
     http.ts             error handling + validated body parsing
