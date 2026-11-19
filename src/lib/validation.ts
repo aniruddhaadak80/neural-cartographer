@@ -238,7 +238,7 @@ export const jsonRpcRequestSchema = z
     jsonrpc: z.literal("2.0"),
     id: z.union([z.string(), z.number()]).optional(),
     method: z.string().min(1),
-    params: z.record(z.unknown()).optional(),
+    params: z.record(z.string(), z.unknown()).optional(),
   })
   .passthrough();
 
